@@ -91,6 +91,9 @@
               "src/assets"
             ],
             "codeCoverage": true,
+            "codeCoverageExclude": [
+              "/src/test.ts"
+            ],
             "sourceMap": true
           }
         },
@@ -223,7 +226,12 @@
             "assets": [
               "projects/todo-header/src/favicon.ico",
               "projects/todo-header/src/assets"
-            ]
+            ],
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "projects/todo-header/src/test.ts"
+            ],
+            "sourceMap": true
           }
         },
         "lint": {
@@ -261,6 +269,47 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "projects/todo-header-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "todo-view": {
+      "root": "projects/todo-view",
+      "sourceRoot": "projects/todo-view/src",
+      "projectType": "library",
+      "prefix": "todo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/todo-view/tsconfig.lib.json",
+            "project": "projects/todo-view/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/todo-view/src/test.ts",
+            "tsConfig": "projects/todo-view/tsconfig.spec.json",
+            "karmaConfig": "projects/todo-view/karma.conf.js",
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "projects/todo-view/src/testing/**/*",
+              "projects/todo-view/src/test.ts"
+            ],
+            "sourceMap": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/todo-view/tsconfig.lib.json",
+              "projects/todo-view/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
