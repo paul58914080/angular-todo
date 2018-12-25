@@ -1,0 +1,13 @@
+<div class='todo-view-container'>
+  <div *ngFor='let todo of todos'>
+    <div class='row'>
+      <div class='form-check d-flex h-100'>
+        <input type="checkbox" class="form-check-input h-100 justify-content-center align-content-center"
+               id="exampleCheck1">
+        <label class="form-check-label h-100 justify-content-center align-content-center"
+               for="exampleCheck1">{{todo.title}}</label>
+      </div>
+    </div>
+    <hr/>
+  </div>
+</div>

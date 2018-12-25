@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "todo-view": [
+        "dist/todo-view"
+      ],
+      "todo-view/*": [
+        "dist/todo-view/*"
+      ]
+    }
   }
 }
