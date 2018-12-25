@@ -4,7 +4,7 @@
 
 Your kata is to create an angular **`todo`** application using the angular-cli
 
-### [ ] Kata 2: _Build a sub-project `header`_
+### [x] Kata 2: _Build a sub-project `header`_
 
 Your kata is to create a sub-project called **`header`**. This sub-project can be directly referenced in the todo application.
 
