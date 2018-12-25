@@ -8,7 +8,7 @@ The following command was used to generate the project
 
 ## Refactor
 
-I had to redo the module and component again to suite the naming convention for better readability. For example it generated todo-root where as, I wanted todo-header.
+I had to redo the module and component again to suite the naming convention for better readability. For example: by default it generates `todo-root` where as, I wanted `todo-header`.
 
 ### Generated the module 
 
