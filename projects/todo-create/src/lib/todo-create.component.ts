@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'todo-create',
@@ -6,11 +6,23 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: [ './todo-create.component.scss' ]
 })
 export class TodoCreateComponent implements OnInit {
+  todo: string;
+
+  @Output() created = new EventEmitter<>();
 
   constructor() {
   }
 
   ngOnInit() {
+    this.todo = '';
   }
 
+  onSubmit() {
+    // TODO: call service to save
+    /*
+    TODO: on success
+            -> emit the event
+            -> clean the model
+    */
+  }
 }

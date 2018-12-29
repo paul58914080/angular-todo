@@ -1,6 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {TodoCreateComponent} from './todo-create.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 describe('TodoCreateComponent', () => {
   let component: TodoCreateComponent;
@@ -8,7 +10,9 @@ describe('TodoCreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoCreateComponent ]
+      declarations: [ TodoCreateComponent ],
+      imports: [ HttpClientModule,
+        FormsModule ]
     })
       .compileComponents();
   }));
@@ -21,5 +25,10 @@ describe('TodoCreateComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have empty text for todo on init', () => {
+    component.ngOnInit();
+    expect(component.todo).toBe('');
   });
 });

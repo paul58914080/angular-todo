@@ -1,5 +1,6 @@
 <div class='container-fluid todo-create-container'>
-  <form class='row'>
-    <input type='text' class='w-100' placeholder='Enter your todo item and press enter'/>
+  <form class='row' (ngSubmit)='onSubmit()' #todoForm='ngForm'>
+    <input type='text' class='w-100' placeholder='Enter your todo item and press enter'
+    [(ngModel)]='todo' name='todo'/>
   </form>
 </div>
