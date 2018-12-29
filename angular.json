@@ -92,7 +92,8 @@
             ],
             "codeCoverage": true,
             "codeCoverageExclude": [
-              "/src/test.ts"
+              "/src/test.ts",
+              "/src/polyfills.ts"
             ],
             "sourceMap": true
           }
@@ -229,7 +230,8 @@
             ],
             "codeCoverage": true,
             "codeCoverageExclude": [
-              "projects/todo-header/src/test.ts"
+              "projects/todo-header/src/test.ts",
+              "projects/todo-header/src/polyfills.ts"
             ],
             "sourceMap": true
           }
