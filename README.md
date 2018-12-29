@@ -8,7 +8,7 @@ Your kata is to create an angular **`todo`** application using the angular-cli
 
 Your kata is to create a sub-project called **`header`**. This sub-project can be directly referenced in the todo application.
 
-### [ ] Kata 3: _Build a library `view-items`_
+### [x] Kata 3: _Build a library `view-items`_
 
 Your kata is to create a library called **`view-items`**. The aim of this library is to display all the todo items in the list with features like show completed, pending and all. Default would be pending. This sub-project can be directly referenced in the todo application.
 
