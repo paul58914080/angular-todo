@@ -3,6 +3,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
 import {HeaderModule} from '../../projects/todo-header/src/header/header.module';
 import {TodoViewModule} from '../../projects/todo-view/src/lib/todo-view.module';
+import {TodoCreateModule} from '../../projects/todo-create/src/lib/todo-create.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -10,7 +11,8 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         HeaderModule,
-        TodoViewModule
+        TodoViewModule,
+        TodoCreateModule
       ],
       declarations: [
         AppComponent

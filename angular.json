@@ -316,6 +316,46 @@
           }
         }
       }
+    },
+    "todo-create": {
+      "root": "projects/todo-create",
+      "sourceRoot": "projects/todo-create/src",
+      "projectType": "library",
+      "prefix": "todo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/todo-create/tsconfig.lib.json",
+            "project": "projects/todo-create/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/todo-create/src/test.ts",
+            "tsConfig": "projects/todo-create/tsconfig.spec.json",
+            "karmaConfig": "projects/todo-create/karma.conf.js",
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "projects/todo-create/src/test.ts"
+            ],
+            "sourceMap": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/todo-create/tsconfig.lib.json",
+              "projects/todo-create/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-todo"
