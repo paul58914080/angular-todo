@@ -14,4 +14,12 @@ export class TodoViewService {
   getAllTodo(): Observable<Todo[]> {
     return this.httpClient.get<Todo[]>('/todo');
   }
+
+  getPendingTodo() : Observable<Todo[]> {
+    return this.httpClient.get<Todo[]>('/todo?completed=false');
+  }
+
+  getCompletedTodo() {
+    return this.httpClient.get<Todo[]>('/todo?completed=true');
+  }
 }

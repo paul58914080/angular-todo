@@ -4,6 +4,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {TodoViewService} from './todo-view.service';
+import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import {TodoViewService} from './todo-view.service';
   imports: [
     BrowserModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbDropdownModule,
+    FormsModule
   ],
   exports: [
     TodoViewComponent

@@ -1,11 +1,22 @@
 <div class='todo-view-container'>
+  <div class='row d-flex justify-content-end'>
+    <div class='dropdown' ngbDropdown placement='bottom-right'>
+      <button class='btn btn-secondary dropdown-toggle btn-sm' type='button' id='todoAction' data-toggle='dropdown'
+              aria-haspopup='true' aria-expanded='false' ngbDropdownToggle>
+        {{selectedAction}}
+      </button>
+      <div class='dropdown-menu dropdown-menu-right' aria-labelledby='todoAction' ngbDropdownMenu>
+        <a class='dropdown-item' *ngFor='let action of actions' (click)='actionChanged(action)'>{{action}}</a>
+      </div>
+    </div>
+  </div>
   <div *ngFor='let todo of todos'>
     <div class='row'>
       <div class='form-check d-flex h-100'>
-        <input type="checkbox" class="form-check-input h-100 justify-content-center align-content-center"
-               id="exampleCheck1">
-        <label class="form-check-label h-100 justify-content-center align-content-center"
-               for="exampleCheck1">{{todo.title}}</label>
+        <input type='checkbox' class='form-check-input h-100 justify-content-center align-content-center'
+               id='exampleCheck1' [ngModel]='todo.completed'>
+        <label class='form-check-label h-100 justify-content-center align-content-center'
+               for='exampleCheck1'>{{todo.title}}</label>
       </div>
     </div>
     <hr/>
