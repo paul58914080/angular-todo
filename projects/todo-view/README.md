@@ -14,5 +14,8 @@ I had to explicitly create .scss and .html as both the styles and html were inli
 
 `ng test todo-view`
 
+## Added ng-bootstrap
+
+**`npm i --save @ng-bootstrap/ng-bootstrap`**
 
 
