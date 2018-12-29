@@ -4,6 +4,8 @@ import {TodoViewComponent} from './todo-view.component';
 import {TodoViewService} from './todo-view.service';
 import {of} from 'rxjs';
 import {HttpClientModule} from '@angular/common/http';
+import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule} from '@angular/forms';
 
 describe('TodoViewComponent', () => {
   let component: TodoViewComponent;
@@ -12,7 +14,9 @@ describe('TodoViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientModule ],
+      imports: [ HttpClientModule,
+        NgbDropdownModule,
+        FormsModule],
       declarations: [ TodoViewComponent ]
     })
       .compileComponents();
@@ -29,11 +33,44 @@ describe('TodoViewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should get the list of actionable todo list on init', () => {
+  it('should get the list of all pending todo list on init', () => {
     const todos = [ { completed: false, title: 'Watch Game of Thrones' } ];
-    spyOn(todoViewService, 'getAllTodo').and.returnValue(of(todos));
+    spyOn(todoViewService, 'getPendingTodo').and.returnValue(of(todos));
     component.ngOnInit();
+    expect(todoViewService.getPendingTodo).toHaveBeenCalled();
+    expect(component.todos).toBe(todos);
+    expect(component.actions).toEqual(['All', 'Completed', 'Pending']);
+    expect(component.selectedAction).toBe('Pending');
+  });
+
+  it('should get the list of all todo list', () => {
+    const todos = [ { completed: false, title: 'Watch Game of Thrones' }, { completed: true,title: 'Lord of the rings'} ];
+    spyOn(todoViewService, 'getAllTodo').and.returnValue(of(todos));
+    component.getAllTodo();
     expect(todoViewService.getAllTodo).toHaveBeenCalled();
     expect(component.todos).toBe(todos);
+  });
+
+  it('should get the list of all completed todo list', () => {
+    const todos = [{ completed: true,title: 'Lord of the rings'} ];
+    spyOn(todoViewService, 'getCompletedTodo').and.returnValue(of(todos));
+    component.getCompletedTodo();
+    expect(todoViewService.getCompletedTodo).toHaveBeenCalled();
+    expect(component.todos).toBe(todos);
+  });
+
+  it('should get the appropriate todo list when the selected action changes', () => {
+    spyOn(component, 'getCompletedTodo').and.returnValues([ { completed: true, title: 'Watch Game of Thrones' } ]);
+    spyOn(component, 'getPendingTodo').and.returnValues([ { completed: false, title: 'Watch Game of Thrones' } ]);
+    spyOn(component, 'getAllTodo').and.returnValues([ { completed: false, title: 'Watch Game of Thrones' }, { completed: true,title: 'Lord of the rings'} ]);
+
+    component.actionChanged('Pending');
+    expect(component.getPendingTodo).toHaveBeenCalled();
+
+    component.actionChanged('All');
+    expect(component.getAllTodo).toHaveBeenCalled();
+
+    component.actionChanged('Completed');
+    expect(component.getCompletedTodo).toHaveBeenCalled();
   });
 });
