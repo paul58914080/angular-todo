@@ -5,7 +5,7 @@ import {Todo} from './todo';
 @Component({
   selector: 'todo-view',
   templateUrl: './todo-view.component.html',
-  styleUrls: [ './todo-view.component.scss' ]
+  styleUrls: ['./todo-view.component.scss']
 })
 export class TodoViewComponent implements OnInit {
   todos: Todo[];
@@ -53,6 +53,12 @@ export class TodoViewComponent implements OnInit {
         this.selectedAction = Actions.Pending;
         this.getPendingTodo();
     }
+  }
+
+  completed(todo: Todo) {
+    this.viewService.update(todo).subscribe(() => {
+      this.actionChanged(this.selectedAction);
+    });
   }
 }
 

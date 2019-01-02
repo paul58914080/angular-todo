@@ -14,9 +14,9 @@
     <div class='row'>
       <div class='form-check d-flex h-100'>
         <input type='checkbox' class='form-check-input h-100 justify-content-center align-content-center'
-               id='exampleCheck1' [ngModel]='todo.completed'>
+               id='todo' [(ngModel)]='todo.completed' (ngModelChange)="completed(todo)">
         <label class='form-check-label h-100 justify-content-center align-content-center'
-               for='exampleCheck1'>{{todo.title}}</label>
+               for='todo'>{{todo.title}}</label>
       </div>
     </div>
     <hr/>
