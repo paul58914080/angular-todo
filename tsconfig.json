@@ -24,6 +24,12 @@
       ],
       "todo-view/*": [
         "dist/todo-view/*"
+      ],
+      "todo-create": [
+        "dist/todo-create"
+      ],
+      "todo-create/*": [
+        "dist/todo-create/*"
       ]
     }
   }

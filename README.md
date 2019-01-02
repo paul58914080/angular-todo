@@ -12,7 +12,7 @@ Your kata is to create a sub-project called **`header`**. This sub-project can b
 
 Your kata is to create a library called **`view-items`**. The aim of this library is to display all the todo items in the list with features like show completed, pending and all. Default would be pending. This sub-project can be directly referenced in the todo application.
 
-### [ ] Kata 4: _Build a library `create-items`_
+### [x] Kata 4: _Build a library `create-items`_
 
 Your kata is to create a library called **`create-item`**. The aim of this library is create items for your todo list which should be added in view-items. This sub-project can be directly referenced in the **`todo`** application.
 

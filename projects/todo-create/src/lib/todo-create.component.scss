@@ -1,0 +1,18 @@
+:host ::ng-deep {
+  input {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 28px;
+    font-weight: 300;
+    &::placeholder {
+      color: #ccc;
+      font-weight: 300;
+    }
+    &:hover, &:focus {
+      outline: none;
+      box-shadow: none;
+      border-bottom: 1px solid;
+    }
+  }
+}

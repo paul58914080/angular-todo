@@ -14,10 +14,10 @@ describe('TodoViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientModule,
+      imports: [HttpClientModule,
         NgbDropdownModule,
         FormsModule],
-      declarations: [ TodoViewComponent ]
+      declarations: [TodoViewComponent]
     })
       .compileComponents();
   }));
@@ -34,7 +34,7 @@ describe('TodoViewComponent', () => {
   });
 
   it('should get the list of all pending todo list on init', () => {
-    const todos = [ { completed: false, title: 'Watch Game of Thrones' } ];
+    const todos = [{completed: false, title: 'Watch Game of Thrones', id: 1}];
     spyOn(todoViewService, 'getPendingTodo').and.returnValue(of(todos));
     component.ngOnInit();
     expect(todoViewService.getPendingTodo).toHaveBeenCalled();
@@ -44,7 +44,11 @@ describe('TodoViewComponent', () => {
   });
 
   it('should get the list of all todo list', () => {
-    const todos = [ { completed: false, title: 'Watch Game of Thrones' }, { completed: true,title: 'Lord of the rings'} ];
+    const todos = [{completed: false, title: 'Watch Game of Thrones', id: 1}, {
+      completed: true,
+      title: 'Lord of the rings',
+      id: 2
+    }];
     spyOn(todoViewService, 'getAllTodo').and.returnValue(of(todos));
     component.getAllTodo();
     expect(todoViewService.getAllTodo).toHaveBeenCalled();
@@ -52,7 +56,7 @@ describe('TodoViewComponent', () => {
   });
 
   it('should get the list of all completed todo list', () => {
-    const todos = [{ completed: true,title: 'Lord of the rings'} ];
+    const todos = [{completed: true, title: 'Lord of the rings', id: 1}];
     spyOn(todoViewService, 'getCompletedTodo').and.returnValue(of(todos));
     component.getCompletedTodo();
     expect(todoViewService.getCompletedTodo).toHaveBeenCalled();
@@ -60,9 +64,12 @@ describe('TodoViewComponent', () => {
   });
 
   it('should get the appropriate todo list when the selected action changes', () => {
-    spyOn(component, 'getCompletedTodo').and.returnValues([ { completed: true, title: 'Watch Game of Thrones' } ]);
-    spyOn(component, 'getPendingTodo').and.returnValues([ { completed: false, title: 'Watch Game of Thrones' } ]);
-    spyOn(component, 'getAllTodo').and.returnValues([ { completed: false, title: 'Watch Game of Thrones' }, { completed: true,title: 'Lord of the rings'} ]);
+    spyOn(component, 'getCompletedTodo').and.returnValues([{completed: true, title: 'Watch Game of Thrones'}]);
+    spyOn(component, 'getPendingTodo').and.returnValues([{completed: false, title: 'Watch Game of Thrones'}]);
+    spyOn(component, 'getAllTodo').and.returnValues([{
+      completed: false,
+      title: 'Watch Game of Thrones'
+    }, {completed: true, title: 'Lord of the rings'}]);
 
     component.actionChanged('Pending');
     expect(component.getPendingTodo).toHaveBeenCalled();
@@ -72,5 +79,15 @@ describe('TodoViewComponent', () => {
 
     component.actionChanged('Completed');
     expect(component.getCompletedTodo).toHaveBeenCalled();
+  });
+
+  it('should on completion of a todo should update it as completed and refresh the current view', () => {
+    component.selectedAction = 'Pending';
+    spyOn(todoViewService, 'update').and.returnValue(of({}));
+    spyOn(component, 'getPendingTodo').and.returnValues([{completed: false, title: 'Watch Game of Thrones'}]);
+    const todo = {completed: true, title: 'Watch Game of Thrones', id: 1};
+    component.completed(todo);
+    expect(todoViewService.update).toHaveBeenCalledWith(todo);
+    expect(component.getPendingTodo).toHaveBeenCalled();
   });
 });

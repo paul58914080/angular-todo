@@ -15,11 +15,15 @@ export class TodoViewService {
     return this.httpClient.get<Todo[]>('/todo');
   }
 
-  getPendingTodo() : Observable<Todo[]> {
+  getPendingTodo(): Observable<Todo[]> {
     return this.httpClient.get<Todo[]>('/todo?completed=false');
   }
 
-  getCompletedTodo() {
+  getCompletedTodo(): Observable<Todo[]> {
     return this.httpClient.get<Todo[]>('/todo?completed=true');
+  }
+
+  update(todo: Todo): Observable<void> {
+    return this.httpClient.put<void>(`/todo/${todo.id}`, todo);
   }
 }
