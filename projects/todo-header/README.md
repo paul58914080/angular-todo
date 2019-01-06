@@ -127,6 +127,120 @@ It is a simple switch the enable this encapsulation of Shadow DOM when we are re
   // If you want to have Shadow DOM un-comment the following
   // encapsulation: ViewEncapsulation.ShadowDom
 })
-export class HeaderComponent 
+export class HeaderComponent
 ```
 
+## Including the web-component
+
+While I tried to include the generated web component in the projects (angular and non-angular) I faced some challenges. I will briefly touch base on the challenges I faced in them.
+
+### Including within another angular project
+
+Had to remove bootstrap because it would conflict, instead declared it **`entryComponents`**
+
+```typescript
+@NgModule({
+  declarations: [
+    HeaderComponent
+  ],
+  imports: [
+    BrowserModule,
+    CommonModule
+  ],
+  exports: [
+    HeaderComponent
+  ],
+  entryComponents: [
+    HeaderComponent
+  ]
+})
+export class HeaderModule {
+}
+```
+
+Need to declare **`CUSTOM_ELEMENTS_SCHEMA`** in the component that uses the web-component and removed the import of **`TodoHeaderModule`**
+
+```typescript
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    TodoViewModule,
+    TodoCreateModule
+  ],
+  providers: [],
+  bootstrap: [ AppComponent ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
+})
+```
+
+Since we are using this as a web-component, I had to modify the **`angular.json`** in the build section of the component that uses it, in this case the todo application by adding in the scripts the **`todo-header.js`**
+
+```json
+{
+  "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/angular-todo",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "elements/todo-header.js"
+            ]
+          }
+  }
+}
+```
+
+I encountered transpilation issues like below when I tried to access the web-component
+
+> `TypeError: Failed to construct 'HTMLElement': Please use the 'new' operator, this DOM object constructor cannot be called as a function.`
+
+To get over it, thanks to the blog [Angular Elements TypeScript transpilation issues -  **Marko Hrovatič**](https://medium.com/@brgrz/angular-elements-typescript-transpilation-issues-62b0e441a7b9)
+
+I used es6 in my **`tsconfig.json`** 
+
+```json
+{
+  "compilerOptions": {
+    ...
+    target: "es6"
+  }
+}
+```
+
+Another challenge that I encountered was the duplication of zone.js between the todo application and the todo-header (web-component). To fix it I had to comment it in the todo-header/src/polyfills.ts the inclusion of zone.js as this is already included in the todo application. Though this is a workaround I am keen on the fix being released
+
+```json
+// FIXME : https://github.com/angular/angular/issues/24466
+// When you want to host this in another angular project then zone should be commented. If you are hosting in a non-angular project where zone is not referenced then un-commented the following
+// import 'zone.js/dist/zone'; // Included with Angular CLI.
+```
+
+### Including in another non-angular project
+
+For the non-angular project which does not have zone referenced with it, all I had to do was to include zone.js 
+
+```html
+<html>
+  <body>
+    <todo-header></todo-header>
+  </body>
+  <script type="text/javascript" src="https://unpkg.com/zone.js"></script>
+  <script type='text/javascript' src='todo-header.js'></script>
+</html>
+```

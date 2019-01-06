@@ -15,7 +15,7 @@ import {createCustomElement} from '@angular/elements';
   exports: [
     HeaderComponent
   ],
-  bootstrap: [
+  entryComponents: [
     HeaderComponent
   ]
 })

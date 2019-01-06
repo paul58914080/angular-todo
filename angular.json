@@ -29,7 +29,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "elements/todo-header.js"
+            ]
           },
           "configurations": {
             "production": {
