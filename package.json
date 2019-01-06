@@ -13,7 +13,8 @@
     "start:proxy": "ng serve --proxy-config proxy.conf.json",
     "start:proxy:mock:server": "concurrently --kill-others \"npm run mock:server\" \"npm run start:proxy\"",
     "serve:todo-header": "ng serve --project=todo-header",
-    "test:todo-header": "ng test --project=todo-header"
+    "test:todo-header": "ng test --project=todo-header",
+    "build:todo-header:elements": "ng build todo-header --prod --output-hashing none && node elements-build/elements-build.todo-header.js"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +22,7 @@
     "@angular/common": "~7.1.0",
     "@angular/compiler": "~7.1.0",
     "@angular/core": "~7.1.0",
+    "@angular/elements": "^7.1.4",
     "@angular/forms": "~7.1.0",
     "@angular/platform-browser": "~7.1.0",
     "@angular/platform-browser-dynamic": "~7.1.0",
@@ -30,7 +32,8 @@
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "document-register-element": "^1.7.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.11.0",
@@ -42,7 +45,9 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
+    "concat": "^1.0.3",
     "concurrently": "^4.1.0",
+    "fs-extra": "^7.0.1",
     "istanbul-combine": "^0.3.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",

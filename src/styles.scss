@@ -1,4 +1,4 @@
-@import '~bootstrap/scss/bootstrap.scss';
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,600,700,900');
 
 $font-family: 'Source Sans Pro', sans-serif;
@@ -8,5 +8,3 @@ html, body {
   width: 100vw;
   height: 100vh;
 }
-
-
