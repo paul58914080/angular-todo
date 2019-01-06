@@ -77,8 +77,9 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js/dist/zone'; // Included with Angular CLI.
-
+// FIXME : https://github.com/angular/angular/issues/24466
+// When you want to host this in another angular project then zone should be commented. If you are hosting in a non-angular project where zone is not referenced then un-commented the following
+// import 'zone.js/dist/zone'; // Included with Angular CLI.
 
 /***************************************************************************************************
  * APPLICATION IMPORTS

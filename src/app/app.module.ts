@@ -1,9 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HeaderModule} from '../../projects/todo-header/src/header/header.module';
 import {TodoViewModule} from '../../projects/todo-view/src/lib/todo-view.module';
 import {TodoCreateModule} from '../../projects/todo-create/src/lib/todo-create.module';
 
@@ -14,12 +13,14 @@ import {TodoCreateModule} from '../../projects/todo-create/src/lib/todo-create.m
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HeaderModule,
     TodoViewModule,
     TodoCreateModule
   ],
   providers: [],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class AppModule {
 }

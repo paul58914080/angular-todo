@@ -1,7 +1,8 @@
-import {NgModule} from '@angular/core';
+import {Injector, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HeaderComponent} from './header.component';
 import {BrowserModule} from '@angular/platform-browser';
+import {createCustomElement} from '@angular/elements';
 
 @NgModule({
   declarations: [
@@ -14,9 +15,16 @@ import {BrowserModule} from '@angular/platform-browser';
   exports: [
     HeaderComponent
   ],
-  bootstrap: [
+  entryComponents: [
     HeaderComponent
   ]
 })
 export class HeaderModule {
+  constructor(private injector: Injector) {
+  }
+
+  ngDoBootstrap() {
+    const headerElement = createCustomElement(HeaderComponent, {injector: this.injector});
+    customElements.define('todo-header', headerElement);
+  }
 }

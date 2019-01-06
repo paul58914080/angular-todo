@@ -16,7 +16,7 @@ Your kata is to create a library called **`view-items`**. The aim of this librar
 
 Your kata is to create a library called **`create-item`**. The aim of this library is create items for your todo list which should be added in view-items. This sub-project can be directly referenced in the **`todo`** application.
 
-### [ ] Kata 5: _Package sub-project `header` as angular-elements (web-components)_
+### [x] Kata 5: _Package sub-project `header` as angular-elements (web-components)_
 
 Your kata is to make the sub-project **`header`** as angular-elements and include it in your **`todo`** application.
 

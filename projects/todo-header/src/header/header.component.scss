@@ -1,5 +1,10 @@
+$font-family: 'Source Sans Pro', sans-serif;
 
-:host ::ng-deep {
+:host {
+  @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css');
+
+  font-family: $font-family;
+
   .navbar-brand {
     font-weight: 200;
     font-size: 30pt;
