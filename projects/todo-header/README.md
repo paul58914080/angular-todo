@@ -117,7 +117,7 @@ I preferred this way of having shared style guide across my platform. I chose th
 
 Possibly the most easiest way is to make your component a **custom element** by doing so you get access to the global style guide. Since we made it custom elements we need ensure that there is no conflict with the outer world. Custom elements are fully supported by the webcomponentjs polyfill, which has great browser support. 
 
-It is a simple switch the enable this encapsulation of Shadow DOM when we are ready for it
+It is a simple switch to enable this encapsulation of Shadow DOM when we are ready for it
 
 ```typescript
 @Component({
@@ -132,11 +132,11 @@ export class HeaderComponent
 
 ## Including the web-component
 
-While I tried to include the generated web component in the projects (angular and non-angular) I faced some challenges. I will briefly touch base on the challenges I faced in them.
+While I tried to include the generated web component in the projects (angular and non-angular) I faced some challenges. I will briefly touch base on the challenges I faced in them and the ways I resolved them.
 
 ### Including within another angular project
 
-Had to remove bootstrap because it would conflict, instead declared it **`entryComponents`**
+Had to remove bootstrap because it would conflict, instead declared it in **`entryComponents`**
 
 ```typescript
 @NgModule({
@@ -184,24 +184,24 @@ Since we are using this as a web-component, I had to modify the **`angular.json`
 ```json
 {
   "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/angular-todo",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [
-              "elements/todo-header.js"
-            ]
-          }
+    "builder": "@angular-devkit/build-angular:browser",
+    "options": {
+      "outputPath": "dist/angular-todo",
+      "index": "src/index.html",
+      "main": "src/main.ts",
+      "polyfills": "src/polyfills.ts",
+      "tsConfig": "src/tsconfig.app.json",
+      "assets": [
+        "src/favicon.ico",
+        "src/assets"
+      ],
+      "styles": [
+        "src/styles.scss"
+      ],
+      "scripts": [
+        "elements/todo-header.js"
+      ]
+    }
   }
 }
 ```
@@ -210,20 +210,17 @@ I encountered transpilation issues like below when I tried to access the web-com
 
 > `TypeError: Failed to construct 'HTMLElement': Please use the 'new' operator, this DOM object constructor cannot be called as a function.`
 
-To get over it, thanks to the blog [Angular Elements TypeScript transpilation issues -  **Marko Hrovatič**](https://medium.com/@brgrz/angular-elements-typescript-transpilation-issues-62b0e441a7b9)
-
-I used es6 in my **`tsconfig.json`** 
+To get over it, thanks to the blog [Angular Elements TypeScript transpilation issues -  **Marko Hrovatič**](https://medium.com/@brgrz/angular-elements-typescript-transpilation-issues-62b0e441a7b9) I used **`es6`** in my **`tsconfig.json`** 
 
 ```json
 {
   "compilerOptions": {
-    ...
     target: "es6"
   }
 }
 ```
 
-Another challenge that I encountered was the duplication of zone.js between the todo application and the todo-header (web-component). To fix it I had to comment it in the todo-header/src/polyfills.ts the inclusion of zone.js as this is already included in the todo application. Though this is a workaround I am keen on the fix being released
+Another challenge that I encountered was the duplication of **`zone.js`** between the `todo` application and the `todo-header` (web-component). To fix it, I had to comment it in the file **`todo-header/src/polyfills.ts`** the inclusion of **`zone.js`** as this is already included in the `todo` application. Though this is a workaround I am keen on the fix being released
 
 ```json
 // FIXME : https://github.com/angular/angular/issues/24466
@@ -233,7 +230,7 @@ Another challenge that I encountered was the duplication of zone.js between the 
 
 ### Including in another non-angular project
 
-For the non-angular project which does not have zone referenced with it, all I had to do was to include zone.js 
+For the non-angular project which does not have **`zone.js`** referenced in it, all I had to do was to include **`zone.js`**
 
 ```html
 <html>
