@@ -4,11 +4,11 @@ import {TodoViewComponent} from '../../projects/todo-view/src/lib/todo-view.comp
 @Component({
   selector: 'todo-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: [ './app.component.scss' ]
 })
 export class AppComponent {
 
-  @ViewChild(TodoViewComponent) view: TodoViewComponent;
+  @ViewChild(TodoViewComponent, { static: false }) view: TodoViewComponent;
 
   created() {
     this.view.actionChanged(this.view.selectedAction);
