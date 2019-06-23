@@ -1,8 +1,7 @@
 $font-family: 'Source Sans Pro', sans-serif;
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css');
 
 :host {
-  @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css');
-
   font-family: $font-family;
 
   .navbar-brand {
