@@ -3,10 +3,10 @@ const concat = require('concat');
 
 (async function build() {
   const files = [
-    './dist/todo-header/runtime.js',
-    './dist/todo-header/polyfills.js',
+    './dist/todo-header/runtime-es2015.js',
+    './dist/todo-header/polyfills-es2015.js',
     './dist/todo-header/scripts.js',
-    './dist/todo-header/main.js'
+    './dist/todo-header/main-es2015.js'
   ];
 
   await fs.ensureDir('elements');
